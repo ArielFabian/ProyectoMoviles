@@ -85,6 +85,7 @@
         android:layout_marginBottom="128dp"
         android:backgroundTint="#0D41A6"
         android:fontFamily="monospace"
+        android:onClick="registrar"
         android:text="Crear cuenta"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

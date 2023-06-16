@@ -6,6 +6,9 @@
         android:id="@+id/menuitemAñadir"
         android:title="Añadir Tarea" />
     <item
+        android:id="@+id/menuitemVertarea"
+        android:title="Ver tareas" />
+    <item
         android:id="@+id/menuitemperfil"
         android:title="Ver Perfil" />
 </menu>

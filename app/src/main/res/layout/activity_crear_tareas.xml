@@ -99,6 +99,7 @@
         android:layout_marginBottom="192dp"
         android:backgroundTint="#0D41A6"
         android:fontFamily="monospace"
+        android:onClick="crearTarea"
         android:text="Crear Tarea"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -52,7 +52,7 @@
         android:orientation="vertical" />
 
     <EditText
-        android:id="@+id/txtEditnombretarea"
+        android:id="@+id/txtnombretarea"
         android:layout_width="357dp"
         android:layout_height="53dp"
         android:layout_marginStart="24dp"
@@ -62,14 +62,14 @@
         android:ems="10"
         android:hint="Ingrese el nuevo nombre de la tarea"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/txtEditfechainicio"
+        app:layout_constraintBottom_toTopOf="@+id/txtfechainicio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <EditText
-        android:id="@+id/txtEditfechainicio"
+        android:id="@+id/txtfechainicio"
         android:layout_width="349dp"
         android:layout_height="53dp"
         android:layout_marginStart="30dp"
@@ -79,14 +79,14 @@
         android:ems="10"
         android:hint="Ingrese la nueva fecha de Inicio"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/txtEditfechaestimada"
+        app:layout_constraintBottom_toTopOf="@+id/txtfechaestimada"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditnombretarea" />
+        app:layout_constraintTop_toBottomOf="@+id/txtnombretarea" />
 
     <EditText
-        android:id="@+id/txtEditfechaestimada"
+        android:id="@+id/txtfechaestimada"
         android:layout_width="342dp"
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
@@ -96,14 +96,14 @@
         android:ems="10"
         android:hint="Ingrese la nueva fecha estimada de Finalizacion"
         android:inputType="date"
-        app:layout_constraintBottom_toTopOf="@+id/txtEditfechafinal"
+        app:layout_constraintBottom_toTopOf="@+id/txtfechafinal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.315"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditfechainicio" />
+        app:layout_constraintTop_toBottomOf="@+id/txtfechainicio" />
 
     <EditText
-        android:id="@+id/txtEditfechafinal"
+        android:id="@+id/txtfechafinal"
         android:layout_width="327dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
@@ -116,7 +116,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditfechaestimada" />
+        app:layout_constraintTop_toBottomOf="@+id/txtfechaestimada" />
 
     <Button
         android:id="@+id/btncreartarea"
@@ -132,6 +132,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditfechafinal" />
+        app:layout_constraintTop_toBottomOf="@+id/txtfechafinal" />
 
 </LinearLayout>

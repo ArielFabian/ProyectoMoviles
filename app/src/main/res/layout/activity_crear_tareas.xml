@@ -60,7 +60,7 @@
         android:textSize="34sp" />
 
     <EditText
-        android:id="@+id/txtEditnombretarea"
+        android:id="@+id/txtnombretarea"
         android:layout_width="357dp"
         android:layout_height="53dp"
         android:layout_marginStart="24dp"
@@ -72,7 +72,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/txtEditfechainicio"
+        android:id="@+id/txtfechainicio"
         android:layout_width="349dp"
         android:layout_height="53dp"
         android:layout_marginStart="30dp"
@@ -84,7 +84,7 @@
         android:inputType="date" />
 
     <EditText
-        android:id="@+id/txtEditfechaestimada"
+        android:id="@+id/txtfechaestimada"
         android:layout_width="342dp"
         android:layout_height="48dp"
         android:layout_marginStart="30dp"
@@ -96,7 +96,7 @@
         android:inputType="date" />
 
     <EditText
-        android:id="@+id/txtEditfechafinal"
+        android:id="@+id/txtfechafinal"
         android:layout_width="327dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
@@ -116,4 +116,5 @@
         android:layout_marginBottom="192dp"
         android:backgroundTint="#0D41A6"
         android:fontFamily="monospace"
-
+        android:text="Crear" />
+</LinearLayout>

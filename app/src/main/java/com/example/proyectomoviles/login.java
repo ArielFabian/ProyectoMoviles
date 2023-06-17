@@ -39,11 +39,11 @@ public class login extends AppCompatActivity {
         String contrasena = txtContrasenaLogin.getText().toString();
 
         searchUserOnFile(correo,contrasena);
-        Log.d("LoginActivity",correo);
+        Log.d("login",correo);
         Usuario user = new Usuario(correo.trim(), contrasena.trim());
 
         if (userFounded) {
-            Intent intent = new Intent(login.this, test.class);
+            Intent intent = new Intent(login.this, android.R.menu.class);
             startActivity(intent);
             finish();
         }else{
@@ -85,8 +85,8 @@ public class login extends AppCompatActivity {
                         if (linePass == lineUser ){
                             userFounded = true;
                         }else{
-                            Log.d("LoginActivity",lineUser+"");
-                            Log.d("LoginActivity",""+linePass);
+                            Log.d("login",lineUser+"");
+                            Log.d("login",""+linePass);
 
                         }
                     }

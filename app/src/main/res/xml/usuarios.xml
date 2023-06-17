@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<usuarios>
+    <usuario>
+        <nombreCompleto>Nombre Completo 1</nombreCompleto>
+        <correo>correo1@example.com</correo>
+        <contrasena>contrasena1</contrasena>
+        <isProgramador>true</isProgramador>
+        <isPm>false</isPm>
+        <tareas>
+            <tarea>
+                <titulo>Tarea 1</titulo>
+                <descripcion>Descripción de la tarea 1</descripcion>
+            </tarea>
+            <tarea>
+                <titulo>Tarea 2</titulo>
+                <descripcion>Descripción de la tarea 2</descripcion>
+            </tarea>
+        </tareas>
+    </usuario>
+    <usuario>
+        <nombreCompleto>Nombre Completo 2</nombreCompleto>
+        <correo>correo2@example.com</correo>
+        <contrasena>contrasena2</contrasena>
+        <isProgramador>false</isProgramador>
+        <isPm>true</isPm>
+        <tareas>
+            <tarea>
+                <titulo>Tarea 3</titulo>
+                <descripcion>Descripción de la tarea 3</descripcion>
+            </tarea>
+        </tareas>
+    </usuario>
+    <!-- Agrega más usuarios según sea necesario -->
+</usuarios>

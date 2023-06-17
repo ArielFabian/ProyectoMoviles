@@ -75,4 +75,8 @@ public class Usuario {
     public void setTareas(ArrayList<Tarea> tareas) {
         this.tareas = tareas;
     }
+
+    public String getContrasena() {
+        return this.contrasena;
+    }
 }

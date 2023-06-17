@@ -14,17 +14,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        btnRegistrarse = (Button) findViewById(R.id.btnregistrar);
-        btnIniciarSesion = (Button) findViewById(R.id.btniniciarsesion);
+        btnRegistrarse = findViewById(R.id.btnregistrar);
+        btnIniciarSesion = findViewById(R.id.btniniciarsesion);
     }
 
     public void iniciarRegistro(View view){
-        Intent intent = new Intent(this, activity_crear_cuenta.class);
+        Intent intent = new Intent(MainActivity.this, crear_cuenta.class);
         startActivity(intent);
     }
 
     public void iniciarSesion(View view){
-        Intent intent = new Intent(this, activity_login.class);
+        Intent intent = new Intent(MainActivity.this, login.class);
         startActivity(intent);
     }
 }

@@ -18,6 +18,14 @@ public class Usuario {
         this.isPm = isPm;
         this.tareas = tareas;
     }
+    public  Usuario(String nombreCompleto, String correo){
+        this.nombreCompleto = nombreCompleto;
+        this.correo = correo;
+        this.contrasena = null;
+        this.isProgramador = false;
+        this.isPm = false;
+        this.tareas = null;
+    }
 
     public Usuario() {
         this.nombreCompleto = "";

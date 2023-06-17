@@ -59,7 +59,7 @@ public class crear_cuenta extends AppCompatActivity {
 
     private void guardarArchivo(){
         try {
-            //Objeto que asocia al archivo especificado, para escritura
+
             OutputStreamWriter archivoInterno = new OutputStreamWriter(
                     openFileOutput("users.txt", Activity.MODE_PRIVATE));
             archivoInterno.write(registerUserOnFile(previousUsers));
@@ -75,10 +75,10 @@ public class crear_cuenta extends AppCompatActivity {
 
         if (existeArchivo(archivos, "users.txt")){
             try {
-                //Objeto que asocia al archivo especificado, para lectura
+
                 InputStreamReader archivoInterno = new
                         InputStreamReader(openFileInput("users.txt"));
-                //Objeto que relaciona el arhicov con el flujo de entrada (lectura)
+
                 BufferedReader leerArchivo = new BufferedReader(archivoInterno);
                 String linea = leerArchivo.readLine();
 
@@ -116,8 +116,7 @@ public class crear_cuenta extends AppCompatActivity {
             stringBuilder.append(this.txtCorreoCc.getText().toString());
             stringBuilder.append("Contrasena: ");
             stringBuilder.append(this.txtContrasenaCc.getText().toString());
-
-
+            
         }else{
             stringBuilder.append("\n");
             stringBuilder.append("Nombre Completo: ");

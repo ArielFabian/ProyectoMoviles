@@ -41,6 +41,7 @@ public class login extends AppCompatActivity {
     private Usuario usuarioEncontrado;
     private ArrayList<Usuario> usuarios;
     private Context context;
+    private Usuario usuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,13 +89,17 @@ public class login extends AppCompatActivity {
             for (Usuario usuario : usuarios) {
                 if (usuario.getCorreo().equals(correo) && usuario.getContrasena().equals(contrasena)) {
                     usuarioEncontrado = true;
+                    this.usuario=usuario;
                     break;
                 }
             }
             if (usuarioEncontrado) {
                 // El inicio de sesión fue exitoso
                 Toast.makeText(login.this, "Inicio de sesión exitoso", Toast.LENGTH_SHORT).show();
-                // Aquí puedes realizar la lógica correspondiente al inicio de sesión exitoso
+                // Aquí puedes realizar la lógica correspondiente al inicio de sesión exito
+                Intent intent = new Intent(this,menu_tareas.class);
+                intent.putExtra("nuevoUsuario",usuario);
+                startActivity(intent);
             } else {
                 // No se encontró un usuario con las credenciales proporcionadas
                 Toast.makeText(login.this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show();

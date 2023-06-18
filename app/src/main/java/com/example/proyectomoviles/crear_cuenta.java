@@ -36,7 +36,7 @@ public class crear_cuenta extends AppCompatActivity {
     public EditText txtNombreCc, txtApellidoCc, txtCorreoCc, txtContrasenaCc;
     public Button btnCrearCuenta;
     private RadioButton pm, pro;
-    private String FILENAME="usuarios.json";
+    private String FILENAME="usuarios.json"; 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

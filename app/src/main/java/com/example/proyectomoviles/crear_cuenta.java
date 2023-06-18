@@ -1,4 +1,6 @@
 package com.example.proyectomoviles;
+import static android.provider.Telephony.Mms.Part.FILENAME;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -15,6 +17,7 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
@@ -25,12 +28,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class crear_cuenta extends AppCompatActivity {
     public EditText txtNombreCc, txtApellidoCc, txtCorreoCc, txtContrasenaCc;
     public Button btnCrearCuenta;
     private RadioButton pm, pro;
+    private String FILENAME="usuarios.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +50,6 @@ public class crear_cuenta extends AppCompatActivity {
         btnCrearCuenta = findViewById(R.id.btncrearcuenta);
         pm = findViewById(R.id.rbtnPM);
         pro = findViewById(R.id.rbtnProgramador);
-        abrirArchivo();
     }
 
     public void registrar(View view) {
@@ -74,59 +79,52 @@ public class crear_cuenta extends AppCompatActivity {
     }
 
     private void guardarUsuario(Usuario usuario) {
-        ArrayList<Usuario> usuarios = obtenerUsuarios();
+        // Cargar los usuarios existentes desde el archivo JSON
+        List<Usuario> usuarios = cargarUsuarios();
+
+        // Agregar el nuevo usuario a la lista
         usuarios.add(usuario);
+
+        // Crear una instancia de Gson para convertir la lista de usuarios a formato JSON
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String jsonUsuarios = gson.toJson(usuarios);
+
         try {
-            FileOutputStream fileOutputStream = openFileOutput("usuarios.json", Context.MODE_PRIVATE);
-            JsonWriter jsonWriter = new JsonWriter(new OutputStreamWriter(fileOutputStream, "UTF-8"));
-            jsonWriter.setIndent("  ");
-            jsonWriter.beginArray();
-            for (Usuario u : usuarios) {
-                jsonWriter.beginObject();
-                jsonWriter.name("nombreCompleto").value(u.getNombreCompleto());
-                jsonWriter.name("correo").value(u.getCorreo());
-                jsonWriter.name("contrasena").value(u.getContrasena());
-                jsonWriter.name("programador").value(u.isProgramador());
-                jsonWriter.name("pm").value(u.isPm());
-                jsonWriter.endObject();
-            }
-            jsonWriter.endArray();
-            jsonWriter.close();
+            // Abrir el archivo en modo privado para escritura
+            FileOutputStream outputStream = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+
+            // Escribir el JSON de la lista de usuarios en el archivo
+            OutputStreamWriter writer = new OutputStreamWriter(outputStream);
+            writer.write(jsonUsuarios);
+            writer.close();
+
+            Toast.makeText(this, "Registro de usuario exitoso", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             e.printStackTrace();
-            Toast.makeText(this, "algo salio mal", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error al guardar el usuario", Toast.LENGTH_SHORT).show();
         }
     }
-
-    private ArrayList<Usuario> obtenerUsuarios() {
-        ArrayList<Usuario> usuarios = new ArrayList<>();
+    private List<Usuario> cargarUsuarios() {
         try {
-            FileInputStream fileInputStream = openFileInput("usuarios.json");
+            FileInputStream fileInputStream = openFileInput(FILENAME);
             InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line);
-            }
-            bufferedReader.close();
-            String json = stringBuilder.toString();
+
             Gson gson = new Gson();
-            usuarios = gson.fromJson(json, new TypeToken<ArrayList<Usuario>>(){}.getType());
+            Type listType = new TypeToken<ArrayList<Usuario>>() {}.getType();
+            List<Usuario> usuarios = gson.fromJson(bufferedReader, listType);
+
+            bufferedReader.close();
+            inputStreamReader.close();
+            fileInputStream.close();
+
+            return usuarios != null ? usuarios : new ArrayList<>();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return usuarios;
+
+        return new ArrayList<>();
     }
 
-    private void abrirArchivo() {
-        try {
-            File file = new File(getFilesDir(), "usuarios.json");
-            if (!file.exists()) {
-                file.createNewFile();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

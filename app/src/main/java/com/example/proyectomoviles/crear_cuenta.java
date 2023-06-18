@@ -1,5 +1,4 @@
 package com.example.proyectomoviles;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -8,25 +7,30 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
-import android.util.Xml;
+import android.util.JsonWriter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.Serializable;
-
-import java.util.ArrayList;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 public class crear_cuenta extends AppCompatActivity {
     public EditText txtNombreCc, txtApellidoCc, txtCorreoCc, txtContrasenaCc;
     public Button btnCrearCuenta;
-    private String previousUsers;
+    private RadioButton pm, pro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,8 @@ public class crear_cuenta extends AppCompatActivity {
         txtCorreoCc = findViewById(R.id.txtcorreocc);
         txtContrasenaCc = findViewById(R.id.txtcontraseñacc);
         btnCrearCuenta = findViewById(R.id.btncrearcuenta);
+        pm = findViewById(R.id.rbtnPM);
+        pro = findViewById(R.id.rbtnProgramador);
         abrirArchivo();
     }
 
@@ -46,86 +52,81 @@ public class crear_cuenta extends AppCompatActivity {
         String apellido = txtApellidoCc.getText().toString();
         String correo = txtCorreoCc.getText().toString();
         String contrasena = txtContrasenaCc.getText().toString();
+        boolean programador=false;
+        boolean pm=false;
 
         if (!nombre.isEmpty() && !apellido.isEmpty() && !correo.isEmpty() && !contrasena.isEmpty()) {
-            guardarArchivo();
+            if (this.pm.isChecked()) {
+                pm=true;
+
+            }else{
+                programador=true;
+            }
+            Usuario nuevoUsuario = new Usuario(nombre+apellido, correo, contrasena,programador,pm,null);
+            guardarUsuario(nuevoUsuario);
             Toast.makeText(this, "Registro de usuario exitoso", Toast.LENGTH_SHORT).show();
-            finish();
+            //Intent intent = new Intent(this, activity_tareas.class);
+            // intent.putExtra("nuevoUsuario", (Serializable) nuevoUsuario);
+            // startActivity(intent);
         } else {
             Toast.makeText(this, "Debe llenar todos los campos", Toast.LENGTH_SHORT).show();
         }
     }
 
-
-    private void guardarArchivo(){
+    private void guardarUsuario(Usuario usuario) {
+        ArrayList<Usuario> usuarios = obtenerUsuarios();
+        usuarios.add(usuario);
         try {
-
-            OutputStreamWriter archivoInterno = new OutputStreamWriter(
-                    openFileOutput("users.txt", Activity.MODE_PRIVATE));
-            archivoInterno.write(registerUserOnFile(previousUsers));
-            archivoInterno.flush();
-            archivoInterno.close();
-
-        }catch (IOException e){
-            Toast.makeText(this, "Error al escribir en el archivo", Toast.LENGTH_SHORT).show();
-        }
-    }
-    private void abrirArchivo(){
-        String []archivos = fileList();
-
-        if (existeArchivo(archivos, "users.txt")){
-            try {
-
-                InputStreamReader archivoInterno = new
-                        InputStreamReader(openFileInput("users.txt"));
-
-                BufferedReader leerArchivo = new BufferedReader(archivoInterno);
-                String linea = leerArchivo.readLine();
-
-                String textoLeido = "";
-
-                while(linea != null){
-                    textoLeido += linea + '\n';
-                    linea = leerArchivo.readLine();
-                }
-
-                leerArchivo.close();
-                archivoInterno.close();
-                previousUsers = textoLeido;
-            }catch (IOException e){
-                Toast.makeText(this,"Error al leer el archivo.",Toast.LENGTH_SHORT).show();
+            FileOutputStream fileOutputStream = openFileOutput("usuarios.json", Context.MODE_PRIVATE);
+            JsonWriter jsonWriter = new JsonWriter(new OutputStreamWriter(fileOutputStream, "UTF-8"));
+            jsonWriter.setIndent("  ");
+            jsonWriter.beginArray();
+            for (Usuario u : usuarios) {
+                jsonWriter.beginObject();
+                jsonWriter.name("nombreCompleto").value(u.getNombreCompleto());
+                jsonWriter.name("correo").value(u.getCorreo());
+                jsonWriter.name("contrasena").value(u.getContrasena());
+                jsonWriter.name("programador").value(u.isProgramador());
+                jsonWriter.name("pm").value(u.isPm());
+                jsonWriter.endObject();
             }
+            jsonWriter.endArray();
+            jsonWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "algo salio mal", Toast.LENGTH_SHORT).show();
         }
     }
-    private boolean existeArchivo(String []archivos, String s){
-        for (String archivo : archivos) {
-            if (s.equals(archivo)) {
-                return true;
+
+    private ArrayList<Usuario> obtenerUsuarios() {
+        ArrayList<Usuario> usuarios = new ArrayList<>();
+        try {
+            FileInputStream fileInputStream = openFileInput("usuarios.json");
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuilder stringBuilder = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                stringBuilder.append(line);
             }
+            bufferedReader.close();
+            String json = stringBuilder.toString();
+            Gson gson = new Gson();
+            usuarios = gson.fromJson(json, new TypeToken<ArrayList<Usuario>>(){}.getType());
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return false;
+        return usuarios;
     }
-    private String registerUserOnFile(String currentContentOfTheFile){
-        StringBuilder stringBuilder = new StringBuilder();
-        if (currentContentOfTheFile != null){
-            stringBuilder.append(currentContentOfTheFile);
-            stringBuilder.append("\n");
-            stringBuilder.append("Nombre Completo: ");
-            stringBuilder.append( txtNombreCc.getText().toString());
-            stringBuilder.append("Correo: ");
-            stringBuilder.append(this.txtCorreoCc.getText().toString());
-            stringBuilder.append("Contrasena: ");
-            stringBuilder.append(this.txtContrasenaCc.getText().toString());
-            
-        }else{
-            stringBuilder.append("\n");
-            stringBuilder.append("Nombre Completo: ");
-            stringBuilder.append( txtNombreCc.getText().toString());
-            stringBuilder.append("Correo: ");
-            stringBuilder.append(this.txtCorreoCc.getText().toString());
-            stringBuilder.append("Contrasena: ");
-            stringBuilder.append(this.txtContrasenaCc.getText().toString());
+
+    private void abrirArchivo() {
+        try {
+            File file = new File(getFilesDir(), "usuarios.json");
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return stringBuilder.toString();
     }
 }

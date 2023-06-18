@@ -1,8 +1,13 @@
 package com.example.proyectomoviles;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
-public class Usuario {
+public class Usuario implements Parcelable {
     public String nombreCompleto;
     public String correo;
     public String contrasena;
@@ -35,6 +40,26 @@ public class Usuario {
         this.isPm = false;
         this.tareas = new ArrayList<Tarea>();
     }
+
+    protected Usuario(Parcel in) {
+        nombreCompleto = in.readString();
+        correo = in.readString();
+        contrasena = in.readString();
+        isProgramador = in.readByte() != 0;
+        isPm = in.readByte() != 0;
+    }
+
+    public static final Creator<Usuario> CREATOR = new Creator<Usuario>() {
+        @Override
+        public Usuario createFromParcel(Parcel in) {
+            return new Usuario(in);
+        }
+
+        @Override
+        public Usuario[] newArray(int size) {
+            return new Usuario[size];
+        }
+    };
 
     public String getNombreCompleto() {
         return nombreCompleto;
@@ -86,5 +111,19 @@ public class Usuario {
 
     public String getContrasena() {
         return this.contrasena;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(nombreCompleto);
+        dest.writeString(correo);
+        dest.writeString(contrasena);
+        dest.writeByte((byte) (isProgramador ? 1 : 0));
+        dest.writeByte((byte) (isPm ? 1 : 0));
     }
 }

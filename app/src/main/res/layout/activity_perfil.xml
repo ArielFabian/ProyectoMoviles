@@ -1,9 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity_perfil">
+    android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="82dp"
+            android:layout_marginTop="47dp"
+            android:layout_marginEnd="83dp"
+            android:fontFamily="monospace"
+            android:text="Perfil de Usuario"
+            android:textColor="#0D41A6"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="143dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="140dp"
+            android:layout_marginBottom="26dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvNombre"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvNombre"
+            android:layout_width="341dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="32dp"
+            android:fontFamily="monospace"
+            android:text="Nombre"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/tvCorreo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+        <TextView
+            android:id="@+id/tvCorreo"
+            android:layout_width="341dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="monospace"
+            android:text="Correo"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toTopOf="@+id/llButtons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvNombre" />
+        <EditText
+            android:id="@+id/etArea"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Área"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/etRegistro"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvCorreo" />
+
+        <EditText
+            android:id="@+id/etRegistro"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Registro"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/etProyectoAsignado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etArea" />
+
+        <EditText
+            android:id="@+id/etProyectoAsignado"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Proyecto Asignado"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/etPMAsignado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etRegistro" />
+
+        <EditText
+            android:id="@+id/etPMAsignado"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="PM Asignado"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/etLenguajeAsignado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etProyectoAsignado" />
+
+        <EditText
+            android:id="@+id/etLenguajeAsignado"
+            android:layout_width="341dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="47dp"
+            android:layout_marginBottom="16dp"
+            android:ems="10"
+            android:hint="Lenguaje Asignado"
+            android:inputType="text"
+            app:layout_constraintBottom_toTopOf="@+id/btnActualizar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPMAsignado" />
+
+        <LinearLayout
+            android:id="@+id/llButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnActualizar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginEnd="16dp"
+                android:onClick="actualizar"
+                android:text="Actualizar" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="23dp"
+                android:backgroundTint="#0D41A6"
+                android:onClick="cerrarSession"
+                android:text="Cerrar Sesión" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

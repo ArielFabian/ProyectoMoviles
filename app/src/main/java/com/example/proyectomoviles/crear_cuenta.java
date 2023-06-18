@@ -70,9 +70,9 @@ public class crear_cuenta extends AppCompatActivity {
             Usuario nuevoUsuario = new Usuario(nombre+apellido, correo, contrasena,programador,pm,null);
             guardarUsuario(nuevoUsuario);
             Toast.makeText(this, "Registro de usuario exitoso", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(this, activity_tareas.class);
-            // intent.putExtra("nuevoUsuario", (Serializable) nuevoUsuario);
-            // startActivity(intent);
+            Intent intent = new Intent(crear_cuenta.this, activity_perfil.class);
+            intent.putExtra("nuevoUsuario",nuevoUsuario);
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Debe llenar todos los campos", Toast.LENGTH_SHORT).show();
         }

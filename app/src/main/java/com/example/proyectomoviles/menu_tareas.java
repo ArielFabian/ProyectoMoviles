@@ -32,13 +32,26 @@ public class menu_tareas extends AppCompatActivity {
                 intent.putExtra("nuevoUsuario",usuario);
                 startActivity(intent);
                 break;
+            case R.id.menuitemAñadirBug:
+                Intent intent3 = new Intent(this, crear_bugs.class);
+                intent3.putExtra("nuevoUsuario",usuario);
+                startActivity(intent3);
+                break;
             case R.id.menuitemVertarea:
 
-                Intent consultar = new Intent(this,lista_test.class);
+                Intent consultar4 = new Intent(this, lista_Features.class);
+                consultar4.putExtra("nuevoUsuario",usuario);
+                startActivity(consultar4);
+
+                break;
+            case R.id.menuitemVertareaBug:
+
+                Intent consultar = new Intent(this, lista_bugs.class);
                 consultar.putExtra("nuevoUsuario",usuario);
                 startActivity(consultar);
 
                 break;
+
             case R.id.menuitemperfil:
                 Intent intent1 = new Intent(this,activity_perfil.class);
                 intent1.putExtra("nuevoUsuario",usuario);

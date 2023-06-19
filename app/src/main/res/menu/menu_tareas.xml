@@ -4,11 +4,23 @@
 
     <item
         android:id="@+id/menuitemAñadir"
-        android:title="Añadir Tarea" />
+        android:icon="@drawable/feature"
+        android:title="Añadir Feature"
+        app:showAsAction="always" />
     <item
         android:id="@+id/menuitemVertarea"
-        android:title="Ver tareas" />
+        android:title="Ver Features" />
+    <item
+        android:id="@+id/menuitemAñadirBug"
+        android:icon="@drawable/bug"
+        android:title="Añadir Bugs"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/menuitemVertareaBug"
+        android:title="Ver Bugs" />
     <item
         android:id="@+id/menuitemperfil"
-        android:title="Ver Perfil" />
+        android:icon="@drawable/user"
+        android:title="Ver Perfil"
+        app:showAsAction="always" />
 </menu>

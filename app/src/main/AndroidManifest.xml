@@ -9,13 +9,19 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_moviles"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoMoviles"
         tools:targetApi="31">
         <activity
-            android:name=".lista_test"
+            android:name=".crear_bugs"
+            android:exported="false" />
+        <activity
+            android:name=".lista_bugs"
+            android:exported="false" />
+        <activity
+            android:name=".lista_Features"
             android:exported="false" />
         <activity
             android:name=".menu_tareas"

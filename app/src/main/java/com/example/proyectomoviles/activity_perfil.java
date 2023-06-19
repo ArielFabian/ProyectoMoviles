@@ -86,11 +86,15 @@ public class activity_perfil extends AppCompatActivity {
         String proyectoAsignado = this.proyecto.getText().toString();
         String pmAsignado = this.pm.getText().toString();
         String lenguajeAsignado = this.lenguaje.getText().toString();
+        if(!area.isEmpty()&&!registro.isEmpty()&&!pmAsignado.isEmpty()&&!lenguajeAsignado.isEmpty() ) {
+            Programador programador = new Programador(nombreCompleto, correo, "", isProgramador, isPm, tareas,
+                    area, registro, proyectoAsignado, pmAsignado, lenguajeAsignado);
 
-        Programador programador = new Programador(nombreCompleto, correo, "", isProgramador, isPm, tareas,
-                area, registro, proyectoAsignado, pmAsignado, lenguajeAsignado);
-
-        guardarUsuarioEnJSON(programador);
+            guardarUsuarioEnJSON(programador);
+            Toast.makeText(this,"Perfil editado",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this,"Debe de llenarse todos los campos",Toast.LENGTH_LONG).show();
+        }
     }
     public Programador buscarProgramador(String correo) {
         try {
@@ -159,11 +163,16 @@ public class activity_perfil extends AppCompatActivity {
         String proyectoAsignado = this.proyecto.getText().toString();
         String pmAsignado = this.pm.getText().toString();
         String lenguajeAsignado = this.lenguaje.getText().toString();
+        if(!area.isEmpty()&&!registro.isEmpty()&&!pmAsignado.isEmpty()&&!lenguajeAsignado.isEmpty() ){
+            ProjectManager projectManager = new ProjectManager(nombreCompleto, correo, "", isProgramador, isPm, tareas,
+                    area, registro, proyectoAsignado, pmAsignado, lenguajeAsignado);
 
-        ProjectManager projectManager = new ProjectManager(nombreCompleto, correo, "", isProgramador, isPm, tareas,
-                area, registro, proyectoAsignado, pmAsignado, lenguajeAsignado);
+            guardarUsuarioEnJSONProject(projectManager);
+            Toast.makeText(this,"Debe de llenarse todos los campos",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(this,"Debe de llenarse todos los campos",Toast.LENGTH_LONG).show();
+        }
 
-        guardarUsuarioEnJSONProject(projectManager);
     }
     public void guardarUsuarioEnJSONProject(ProjectManager usuario) {
         // Verificar si el archivo ya existe
@@ -227,13 +236,11 @@ public class activity_perfil extends AppCompatActivity {
     public void actualizar(View view){
         if(this.dl){
             this.projectManager();
-            Toast.makeText(this,"Perfil editado PM",Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(activity_perfil.this, activity_perfil.class);
+            Intent intent = new Intent(activity_perfil.this, menu_tareas.class);
             intent.putExtra("nuevoUsuario",this.usuario);
             startActivity(intent);
         }else{
             this.programador();
-            Toast.makeText(this,"Perfil editado",Toast.LENGTH_LONG).show();
         }
         Intent intent= new Intent(this, menu_tareas.class);
         intent.putExtra("nuevoUsuario",usuario);

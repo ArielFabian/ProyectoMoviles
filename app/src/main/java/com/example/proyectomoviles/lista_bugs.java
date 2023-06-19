@@ -4,15 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -22,39 +16,25 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.gson.Gson;
-
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-
-public class lista_test extends AppCompatActivity {
-
-    private List<Feature> featureList;
-    private DataManager dt;
-    private Usuario usuario;
-    private RecyclerView recyclerViewTareas;
-    private FeatureAdapter tareaAdapter;
-    private ArrayAdapter<Feature> adapter;
+public class lista_bugs extends AppCompatActivity {
+    private ArrayAdapter<Bug> adapter;
+    private List<Bug> bugList;
     private ListView listViewTasks;
     private String proyectos;
+    private Usuario usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_test);
-        DataManager dt = new DataManager(this);
+        setContentView(R.layout.activity_lista_bugs);
         Intent intent = getIntent();
+        listViewTasks = findViewById(R.id.listViewTasks);
         //Se recibe el objeto de registro
         this.usuario = intent.getParcelableExtra("nuevoUsuario");
-
         if(usuario.isPm){
             Log.d("Proyec","si");
             buscarProject(this.usuario.getCorreo());
@@ -62,31 +42,24 @@ public class lista_test extends AppCompatActivity {
             Log.d("Proyec","no");
             buscarProgramador(this.usuario.getCorreo());
         }
-        featureList = cargarTareas(this.proyectos);
-        listViewTasks = findViewById(R.id.listViewTasks);
-        //Log.d("Tareas",featureList.toString() );
-        //recyclerViewTareas = findViewById(R.id.recyclerViewTareas);
-       // recyclerViewTareas.setLayoutManager(new LinearLayoutManager(this));
-       // tareaAdapter = new FeatureAdapter(featureList);
-       // recyclerViewTareas.setAdapter(tareaAdapter);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, featureList);
+        bugList=cargarTareas(this.proyectos);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, bugList);
 
         listViewTasks.setAdapter(adapter);
-
     }
-    private List<Feature> cargarTareas(String proyecto) {
+    private List<Bug> cargarTareas(String proyecto) {
         try {
-            FileInputStream inputStream = openFileInput("future.json");
+            FileInputStream inputStream = openFileInput("bugs.json");
             InputStreamReader reader = new InputStreamReader(inputStream);
             Gson gson = new Gson();
-            Type listType = new TypeToken<ArrayList<Feature>>() {}.getType();
-            List<Feature> tareas = gson.fromJson(reader, listType);
+            Type listType = new TypeToken<ArrayList<Bug>>() {}.getType();
+            List<Bug> tareas = gson.fromJson(reader, listType);
             inputStream.close();
 
-            List<Feature> tareasFiltradas = new ArrayList<>();
+            List<Bug> tareasFiltradas = new ArrayList<>();
             if (tareas != null) {
-                for (Feature tarea : tareas) {
-                    if (tarea.proyecto.equalsIgnoreCase(proyecto)) {
+                for (Bug tarea : tareas) {
+                    if (tarea.enlaceFeature.equalsIgnoreCase(proyecto)) {
                         tareasFiltradas.add(tarea);
                     }
                 }
@@ -97,6 +70,7 @@ public class lista_test extends AppCompatActivity {
         }
         return new ArrayList<>();
     }
+
     public Programador buscarProgramador(String correo) {
         try {
             File file = new File(getFilesDir(), "programadores.json");

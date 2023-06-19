@@ -13,7 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
         android:fontFamily="monospace"
-        android:text="Creación de Futures"
+        android:text="Creación de Bugs"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -26,83 +26,105 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingBottom="10dp">
+
 
             <EditText
                 android:id="@+id/editTextClave"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Clave"
-                android:layout_marginBottom="10dp" />
+                android:hint="Ingrese la clave"
+                android:paddingBottom="10dp" />
+
 
             <EditText
                 android:id="@+id/editTextDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Descripción"
-                android:layout_marginBottom="10dp" />
-
+                android:layout_below="@id/editTextClave"
+                android:hint="Ingrese la descripción"
+                android:paddingBottom="10dp" />
             <EditText
-                android:id="@+id/editTextFechaInicio"
+                android:id="@+id/fechaInicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha de inicio"
-                android:layout_marginBottom="10dp" />
+                android:layout_below="@id/editTextDescripcion"
+                android:hint="Ingrese la fecha de inicio" />
+
 
             <EditText
                 android:id="@+id/editTextFechaEstimada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha estimada"
-                android:layout_marginBottom="10dp" />
+                android:layout_below="@id/editTextDescripcion"
+                android:hint="Ingrese la fecha estimada"
+                android:paddingBottom="10dp" />
+
+
 
             <EditText
                 android:id="@+id/editTextFechaTerminada"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Fecha terminada"
-                android:layout_marginBottom="10dp" />
+                android:layout_below="@id/editTextFechaEstimada"
+                android:hint="Ingrese la fecha terminada"
+                android:paddingBottom="10dp" />
+
+
 
             <EditText
                 android:id="@+id/editTextProyecto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Proyecto"
-                android:layout_marginBottom="10dp" />
+                android:layout_below="@id/editTextFechaTerminada"
+                android:hint="Ingrese el proyecto"
+                android:paddingBottom="10dp" />
+
+
 
             <EditText
                 android:id="@+id/editTextAsigno"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Asignado por"
-                android:layout_marginBottom="10dp" />
+                android:layout_below="@id/editTextProyecto"
+                android:hint="Ingrese el asigno"
+                android:paddingBottom="10dp" />
 
             <EditText
                 android:id="@+id/editTextAsignado"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Asignado a"
-                android:layout_marginBottom="10dp" />
+                android:layout_below="@id/editTextAsigno"
+                android:hint="Ingrese el asignado"
+                android:paddingBottom="10dp" />
+
+
 
             <CheckBox
                 android:id="@+id/checkBoxTerminado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/editTextAsignado"
                 android:text="Terminado"
-                android:layout_marginBottom="10dp" />
+                android:paddingBottom="10dp" />
+
+
 
             <CheckBox
                 android:id="@+id/checkBoxRevisado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/checkBoxTerminado"
                 android:text="Revisado"
-                android:layout_marginBottom="10dp" />
+                android:paddingBottom="10dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
+                <!-- Los componentes restantes -->
 
                 <Button
                     android:id="@+id/buttonCrear"
@@ -111,7 +133,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:onClick="crearFuture"
+                    android:onClick="guardarBug"
                     android:text="Crear" />
 
                 <Button
@@ -121,7 +143,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:onClick="buscarFuture"
+                    android:onClick="buscarBug"
                     android:text="Buscar" />
                 <Button
                     android:id="@+id/buttonEditar"
@@ -130,7 +152,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:onClick="actualizarFutures"
+                    android:onClick="actualizarBug"
                     android:text="Editar" />
 
                 <Button
@@ -140,7 +162,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:onClick="eliminarFutures"
+                    android:onClick="eliminarBug"
                     android:text="Eliminar" />
 
                 <Button
@@ -150,11 +172,10 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:onClick="clearFields"
+                    android:onClick="limpiar"
                     android:text="Limpiar" />
 
             </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

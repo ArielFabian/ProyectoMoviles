@@ -82,4 +82,20 @@ public class Feature extends Tarea{
     public String getClave(){
         return this.clave;
     }
+    @Override
+    public String toString() {
+        String terminadoString = terminado ? "Sí" : "No";
+        String asignadoString = revisado ? "Sí" : "No";
+
+        return "Tarea= " + clave + '\n' +
+                "Descripcion= " + descripcion + '\n' +
+                "Fecha Inicio= " + fechaInicio + '\n' +
+                "Fecha Estimada= " + fechaEstimada + '\n' +
+                "Fecha Terminada= " + fechaTerminada + '\n' +
+                "Proyecto= "+ proyecto + '\n' +
+                "Asigno= " + asigno + '\n' +
+                "Asignado= " + asignado + '\n' +
+                "Terminado= " + terminadoString +'\n'+
+                "Revisado= " + asignadoString;
+    }
 }

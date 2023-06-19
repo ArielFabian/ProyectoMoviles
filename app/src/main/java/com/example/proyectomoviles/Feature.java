@@ -1,5 +1,7 @@
 package com.example.proyectomoviles;
 
+import com.google.gson.Gson;
+
 public class Feature extends Tarea{
     public String proyecto;
     public String asigno;
@@ -75,5 +77,9 @@ public class Feature extends Tarea{
 
     public void setRevisado(boolean revisado) {
         this.revisado = revisado;
+    }
+
+    public String getClave(){
+        return this.clave;
     }
 }

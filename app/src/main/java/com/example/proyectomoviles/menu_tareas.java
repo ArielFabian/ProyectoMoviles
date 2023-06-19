@@ -28,14 +28,15 @@ public class menu_tareas extends AppCompatActivity {
         int id = item.getItemId();
         switch (id){
             case R.id.menuitemAñadir:
-                Intent intent = new Intent(this,crear_tareas.class);
+                Intent intent = new Intent(this, activity_crear_tarea_future.class);
                 intent.putExtra("nuevoUsuario",usuario);
                 startActivity(intent);
                 break;
             case R.id.menuitemVertarea:
 
-                //Intent consultar = new Intent(this,ConsultarActivity.class);
-                //startActivity(consultar);
+                Intent consultar = new Intent(this,lista_test.class);
+                consultar.putExtra("nuevoUsuario",usuario);
+                startActivity(consultar);
 
                 break;
             case R.id.menuitemperfil:

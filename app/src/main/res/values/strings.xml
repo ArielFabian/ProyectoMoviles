@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">ProyectoMoviles</string>
+    <string name="crear">Crear</string>
+    <string name="buscar">Buscar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="crear_cuenta">Crear cuenta</string>
+
 </resources>

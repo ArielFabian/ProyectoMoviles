@@ -1,0 +1,161 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="monospace"
+        android:text="Creación de Futures"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextClave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Clave"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/editTextDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descripción"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/editTextFechaInicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fecha de inicio"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/editTextFechaEstimada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fecha estimada"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/editTextFechaTerminada"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Fecha terminada"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/editTextProyecto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Proyecto"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/editTextAsigno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Asignado por"
+                android:layout_marginBottom="10dp" />
+
+            <EditText
+                android:id="@+id/editTextAsignado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Asignado a"
+                android:layout_marginBottom="10dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxTerminado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Terminado"
+                android:layout_marginBottom="10dp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxRevisado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Revisado"
+                android:layout_marginBottom="10dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- Los componentes restantes -->
+
+                <Button
+                    android:id="@+id/buttonCrear"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="crearFuture"
+                    android:text="Crear" />
+
+                <Button
+                    android:id="@+id/buttonBuscar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="buscarFuture"
+                    android:text="Buscar" />
+                <Button
+                    android:id="@+id/buttonEditar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="actualizarFutures"
+                    android:text="Editar" />
+
+                <Button
+                    android:id="@+id/buttonEliminar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="eliminarFutures"
+                    android:text="Eliminar" />
+
+                <Button
+                    android:id="@+id/buttonLimpiar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:onClick="clearFields"
+                    android:text="Limpiar" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
